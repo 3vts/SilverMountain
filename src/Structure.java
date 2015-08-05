@@ -70,7 +70,7 @@ public class Structure {
         String X9 = "EL MAGO TE MIRA FIJAMENTE";
         String XB = "﻿TE GUIA HACIA EL ";
         header();
-        //System.out.println(Data.get(288));
+        System.out.println(Data.get(76));
         System.out.println("QUE QUIERES?");
         System.out.println("\n  1. EMPEZAR UN JUEGO NUEVO");
         System.out.println("O 2. CONTINUAR UN JUEGO SALVADO\n");
@@ -125,10 +125,36 @@ public class Structure {
         header();
         dString = Data.get(76);
         pString = X[Integer.valueOf(dString.substring(0,1))-1] + " " + Y[Integer.valueOf(dString.substring(1,2))-1] + " ";
-        System.out.println(jString = rString + ". " + "ESTAS " + pString + dString.substring(2));
+        jString = rString + ". " + "ESTAS " + pString + dString.substring(2);
+        l4830();
+        jString= "";
+        oString = Data.get(106).substring(1);
+        pString = Y[Integer.valueOf(Data.get(106).substring(0,1))-1];
+        if(F[26]==0 && C[26]==R) jString += " " + pString + " " + oString + " ," ;
+        if(R==29 && F[47]==0){
+            jString += " UNA FIESTA DE LOS GRAGRS,";
+        }else if (R == 29 && F[47]==1){
+            jString += " UN GRARG DORMIDO,";
+        }else if(R==12 || R==22){
+            jString += "UN PONY,";
+        }else if(R==64){
+            jString +="A UN ERMITANO,";
+        }else if(R==18 && E[17].equals("N")){
+            jString += "UNA PUERTA DE ROBLE,";
+        }else if(R==59 && F[67]==1){
+            jString += " OGBAN (MUERTO),";
+        }
+        if(!jString.equals(""))jString = ",PUEDES VER" + jString;
+        jString += " PUEDES IR AL";
+        l4830();
+}
+    public static void loadGame(){
+        System.out.print(Data.get(0));
+    }
+    public static void l4830(){
         int LS =1;
-        int LP = 1;
-        for(int i= 1;i<jString.length();i++){
+        int LP = 0;
+        for(int i= 0;i<jString.length();i++){
             if(jString.substring(i,i+1).equals(" ") && LL > EL){
                 System.out.println(jString.substring(LP,LS-LP));
                 LL = i - LS;
@@ -139,10 +165,6 @@ public class Structure {
                 LL++;
             }
         }
-        System.out.println(jString.substring(LP, jString.length() - LP));
-        //Runtime.getRuntime().exec("clear");
-}
-    public static void loadGame(){
-        System.out.print(Data.get(0));
+        System.out.println((jString.substring(LP, jString.length() - LP) + " ").replaceAll("\\s+", " "));
     }
 }
