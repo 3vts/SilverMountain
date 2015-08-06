@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 public class Structure {
-    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0;
+    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0, VB = 0, B = 0;
     public static int [] F = new int[70];
     public static String [] X = new String[6];
     public static String [] Y = new String[6];
-    public static String rString = "", dString = "", bString = "", jString ="", oString = "", pString = "", fString= "", lString = "";
+    public static String rString = "", dString = "", bString = "", jString ="", oString = "", pString = "",
+            fString= "", lString = "", iString = "", vString = "", tString = "", uString = "";
     public static String [] gString = new String[2];
     public static int [] C = new int[G];
     public static String [] E = new String[80];
@@ -70,7 +71,7 @@ public class Structure {
         String X9 = "EL MAGO TE MIRA FIJAMENTE";
         String XB = "﻿TE GUIA HACIA EL ";
         header();
-        System.out.println(Data.get(76));
+        //System.out.println(Data.get(76));
         System.out.println("QUE QUIERES?");
         System.out.println("\n  1. EMPEZAR UN JUEGO NUEVO");
         System.out.println("O 2. CONTINUAR UN JUEGO SALVADO\n");
@@ -93,6 +94,7 @@ public class Structure {
         System.out.println("==================================\n");
     }
     public static void newGame(){
+        Scanner sc = new Scanner(System.in);
         Random r = new Random();
         for(int i=0;i<80;i++){
             E[i] = Data.get(180+i);
@@ -147,6 +149,35 @@ public class Structure {
         if(!jString.equals(""))jString = ",PUEDES VER" + jString;
         jString += " PUEDES IR AL";
         l4830();
+        for(int i=0;i<E[R-1].length();i++){
+            System.out.print(E[R-1].substring(i,i+1)+ ".");
+        }
+        rString = "PERDON?";
+        System.out.println("\n\n==================================\n\n\nQUE HARAS AHORA?");
+        iString = sc.nextLine();
+        if(iString.equals("SALVAR JUEGO"))salvarJuego();
+        for(int i=0;i<iString.length()-1;i++){
+            if(iString.substring(i,i+1).equals(" ") && vString.equals("")) vString = iString.substring(0,i);
+            if(!iString.substring(i+1,i+2).equals(" ") && !vString.equals("")){
+                tString =  iString.substring(i+1);
+                i = iString.length();
+            }
+        }
+        if(tString.equals(""))vString = iString;
+        if (vString.length()<3) do{
+            vString += "O";
+        }while(vString.length()<3);
+        if(vString.equals("PLAY")) vString = "BLO";
+        uString = vString.substring(0,3);
+        for(int pos=0, i=0;i<NV;pos+=3,i++){
+            if(bString.substring(pos,pos+3).equals(uString)){
+                VB =i+1;
+                i=NV;
+            }
+        }
+        F[35]=0;
+
+
 }
     public static void loadGame(){
         System.out.print(Data.get(0));
@@ -166,5 +197,8 @@ public class Structure {
             }
         }
         System.out.println((jString.substring(LP, jString.length() - LP) + " ").replaceAll("\\s+", " "));
+    }
+    public static void salvarJuego(){
+        System.out.println("SALVANDO JUEGO");
     }
 }
