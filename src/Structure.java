@@ -1,5 +1,6 @@
 /**
  * Created by Santiesteban on 8/2/15.
+ * Project to recreate the game Secret of Silver Mountain
  */
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Structure {
     public static String [] X = new String[6];
     public static String [] Y = new String[6];
     public static String rString = "", dString = "", bString = "", jString ="", oString = "", pString = "",
-            fString= "", lString = "", iString = "", vString = "", tString = "", uString = "";
+            fString= "", lString = "", iString = "", vString = "", tString = "", uString = "", zString = "";
     public static String [] gString = new String[2];
     public static int [] C = new int[G];
     public static String [] E = new String[80];
@@ -202,5 +203,13 @@ public class Structure {
     }
     public static void salvarJuego(){
         System.out.println("SALVANDO JUEGO");
+    }
+    public static String cypher(String zString) {
+        String cyString = "";
+        for (char c : zString.toCharArray()) {
+            if (c > 64) c--;
+            cyString += c;
+        }
+        return cyString;
     }
 }
