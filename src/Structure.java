@@ -15,7 +15,7 @@ public class Structure {
     public static String [] gString = new String[2];
     public static int [] C = new int[G];
     public static String [] E = new String[80];
-    public static ArrayList<String> Data = new ArrayList<String>(Arrays.asList(("11UNA TUMBA MEDIO ABIERTA,12EL CEMENTERIO DE LOS DUENDES,11EL HUECO DE UNA TUMBA," +
+    public static ArrayList<String> Data = new ArrayList<>(Arrays.asList(("11UNA TUMBA MEDIO ABIERTA,12EL CEMENTERIO DE LOS DUENDES,11EL HUECO DE UNA TUMBA," +
             "23ALGUNAS ESTALACTITAS Y ESTALAGMITAS,11UN LABERINTO DE TUNELES,11UNA CUEVA ABOVEDADA,23LAS ALTAS PUERTAS DE CRISTAL," +
             "12UNA HABITACION DE ENTRADA AL PALACIO,31EL PUESTO DEL CENTINELA GRARG,12LA HABITACION DE GUARDA,31LA ENSENADA PANTANOSA," +
             "23UNAS PUERTAS OXIDADAS,12LA CASITA DEL GUARDIAN DEL JUEGO,31EL ESTANQUE CON NIEBLA,11UN JARDIN CON ALTOS MUROS," +
@@ -71,7 +71,7 @@ public class Structure {
         String X9 = "EL MAGO TE MIRA FIJAMENTE";
         String XB = "﻿TE GUIA HACIA EL ";
         header();
-        //System.out.println(Data.get(76));
+        //System.out.println(Data.get(167));
         System.out.println("QUE QUIERES?");
         System.out.println("\n  1. EMPEZAR UN JUEGO NUEVO");
         System.out.println("O 2. CONTINUAR UN JUEGO SALVADO\n");
@@ -86,27 +86,26 @@ public class Structure {
                 case 2:
                     loadGame();
             }
-        }while(opcs!=1 && opcs !=2);
+        }while(opcs!=1 && opcs!=2);
     }
     public static void header(){
         System.out.println("\tMISTERIO DE LA MONTANA");
         System.out.println("\tDE PLATA");
         System.out.println("==================================\n");
     }
-    public static void newGame(){
-        Scanner sc = new Scanner(System.in);
+    public static void newGame() {
         Random r = new Random();
-        for(int i=0;i<80;i++){
-            E[i] = Data.get(180+i);
+        for (int i = 0; i < 80; i++) {
+            E[i] = Data.get(180 + i);
         }
-        for(int i=0;i<G;i++){
+        for (int i = 0; i < G; i++) {
             C[i] = Integer.valueOf(Data.get(260 + i));
         }
-        for(int i=0;i<13;i++){
-            F[Integer.valueOf(Data.get(288 + i))-1] = 1;
+        for (int i = 0; i < 13; i++) {
+            F[Integer.valueOf(Data.get(288 + i)) - 1] = 1;
         }
-        F[40] = r.nextInt(900)+100;
-        F[41] = r.nextInt(3)+2;
+        F[40] = r.nextInt(900) + 100;
+        F[41] = r.nextInt(3) + 2;
         F[43] = 4;
         F[56] = 68;
         F[57] = 54;
@@ -114,16 +113,20 @@ public class Structure {
         F[51] = r.nextInt(3);
         rString = "BUENA SUERTE EN TU MISION!";
         //gString[0]="";
-        for(int i=0;i<8;i++){
-            int random = r.nextInt(4)*3;
-            fString = bString.substring(random,random + 1);
+        for (int i = 0; i < 8; i++) {
+            int random = r.nextInt(4) * 3;
+            fString = bString.substring(random, random + 1);
             gString[0] = gString[0] + fString;
-            if(fString.equals("N")) lString ="S";
-            if(fString.equals("S")) lString ="N";
-            if(fString.equals("E")) lString ="O";
-            if(fString.equals("O")) lString ="E";
+            if (fString.equals("N")) lString = "S";
+            if (fString.equals("S")) lString = "N";
+            if (fString.equals("E")) lString = "O";
+            if (fString.equals("O")) lString = "E";
             gString[1] = lString + gString[1];
         }
+        l30();
+    }
+    public static void l30(){
+        Scanner sc = new Scanner(System.in);
         header();
         dString = Data.get(76);
         pString = X[Integer.valueOf(dString.substring(0,1))-1] + " " + Y[Integer.valueOf(dString.substring(1,2))-1] + " ";
@@ -176,8 +179,7 @@ public class Structure {
             }
         }
         F[35]=0;
-
-
+        //oString = Data.get(167);
 }
     public static void loadGame(){
         System.out.print(Data.get(0));
