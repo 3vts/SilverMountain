@@ -119,7 +119,7 @@ public class Structure {
         for (int i = 0; i < 8; i++) {
             int random = r.nextInt(4) * 3;
             fString = bString.substring(random, random + 1);
-            gString[0] = gString[0] + fString;
+            gString[0] += fString;
             if (fString.equals("N")) lString = "S";
             if (fString.equals("S")) lString = "N";
             if (fString.equals("E")) lString = "O";
@@ -135,7 +135,7 @@ public class Structure {
             dString = Data.get(76);
             pString = X[Integer.valueOf(dString.substring(0, 1)) - 1] + " " + Y[Integer.valueOf(dString.substring(1, 2)) - 1] + " ";
             jString = rString + ". " + "ESTAS " + pString + dString.substring(2);
-            l4830();
+            trimmer();
             jString = "";
             oString = Data.get(106).substring(1);
             pString = Y[Integer.valueOf(Data.get(106).substring(0, 1)) - 1];
@@ -155,7 +155,7 @@ public class Structure {
             }
             if (!jString.equals("")) jString = ",PUEDES VER" + jString;
             jString += " PUEDES IR AL";
-            l4830();
+            trimmer();
             for (int i = 0; i < E[R - 1].length(); i++) {
                 System.out.print(E[R - 1].substring(i, i + 1) + ".");
             }
@@ -211,21 +211,16 @@ public class Structure {
     public static void loadGame(){
         System.out.print(Data.get(0));
     }
-    public static void l4830(){
-        int LS =1;
+    public static void trimmer(){
+        int LS = 0;
         int LP = 0;
-        for(int i= 0;i<jString.length();i++){
-            if(jString.substring(i,i+1).equals(" ") && LL > EL){
-                System.out.println(jString.substring(LP,LS-LP));
-                LL = i - LS;
-                LP = LS + 1;
-            }
-            if(jString.substring(i,i+1).equals(" ")){
-                LS = i;
-                LL++;
-            }
+        jString = jString.replaceAll("\\s+", " ");
+        while(LS<jString.length()&& LS+EL<jString.length()){
+            LP=jString.substring(LS,EL).lastIndexOf(" ");
+            System.out.println(jString.substring(LS,LP));
+            LS+=LP;
         }
-        System.out.print((jString.substring(LP, jString.length() - LP) + " ").replaceAll("\\s+", " "));
+        System.out.print(jString.substring(LS, jString.length()).trim() + " ");
     }
     public static void salvarJuego(){
         System.out.println("SALVANDO JUEGO");
@@ -239,4 +234,19 @@ public class Structure {
         return cyString;
     }
     public static void l540(){}
+    public static void l4310(){
+        Scanner sc = new Scanner(System.in);
+        jString = "SSSSSSSS";
+        int NG = 0, MP = 0;
+        do{
+            //MP = D/2; eliminar como comentario
+            header();
+            System.out.println("ESTAS PERDIDO EN LOS\n  TUNELES\nEN QUE DIRECCION IRAS? (N,S,E,O)");
+            if(NG>15) System.out.println("(O F PARA FINALIZAR)");
+            String wString=sc.next();
+            jString = (jString + wString).substring(1,9);
+            if(wString.equals("F"))break;
+            if(!jString.equals(gString[MP-1]))NG++;
+        }while(!jString.equals(gString[MP-1]));
+    }
 }
