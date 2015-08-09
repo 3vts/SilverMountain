@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 public class Structure {
-    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0, VB = 0, B = 0;
+    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0, VB = 0, B = 0, H = 0;
     public static int [] F = new int[70];
     public static String [] X = new String[6];
     public static String [] Y = new String[6];
@@ -248,5 +248,70 @@ public class Structure {
             if(wString.equals("F"))break;
             if(!jString.equals(gString[MP-1]))NG++;
         }while(!jString.equals(gString[MP-1]));
+    }
+    public static void l3360(){
+        System.out.println("PULSA RETURN PARA CONTINUAR");
+        Scanner sc = new Scanner(System.in);
+        String zString = sc.next();
+    }
+    public static void l1470(){
+        rString = "VES LO QUE PODRIAS ESPERAR!";
+        if(B>0)rString="NADA ESPECIAL";
+        //if(B==46||B==88)l2550();
+        if(H==8076)rString="ESTA VACIO";
+        if(H==8080){
+            rString="AJA!";
+            F[0]=0;
+        }
+        if(H==7029){
+            rString="OK";
+            F[1]=0;
+        }
+        if(B==20){
+            rString=cypher("IBZ VOBT DFSJMMBT FO FM CPMTJMMP");
+            C[25]=0;
+        }
+        if(H==1648)rString="HAY ALGUNAS LETRAS \"" + gString[1] + "\"";
+        if(H==7432){
+            rString=cypher("TPO NBOABOPT");
+            F[4]=0;
+        }
+        if(H==2134||H==2187){
+            rString="OK";
+            F[15]=0;
+        }
+        if(B==35){
+            rString="ES SOSPECHOSO!";
+            F[16]=0;
+        }
+        if(H==3438){
+            rString="OK";
+            F[21]=0;
+        }
+        if(H==242)rString="HAY UNA INSCRIPCION ILEGIBLE";
+        if((H==1443||H==1485)&&F[32]==0)rString=cypher("VO EFTUFMMP EF MVA TBMF EF MBT QSPGVOEJEBEFT");
+        if((H==1443||H==1485)&&F[32]==1){
+            rString="HAY ALGO AQUI...";
+            F[11]=0;
+        }
+        if(H==2479||H==2444)rString="HAY UNA MANILLA";
+        if(B==9)rString=cypher("MB FUJRVFUB EJDF 'WFOFOP'");
+        if(H==4055){
+            int T=R;
+            R=F[F[51]+56];
+            dString=Data.get(R-1);
+            R=T;
+        }
+        if(H==2969 && F[47]==1)rString="MUY FEO!";
+        if(H==7158||H==7186)rString="HAY LADRILLOS SUELTOS";
+        if(R==49||B==52||B==82||B==81)rString="INTERESANTE!";
+        if(H==6978)rString="HAY UNA PUERTA DE MADERA";
+        if(H==6970){
+            rString="ENCONTRASTE ALGO";
+            F[3]=0;
+        }
+        if(H==2066)rString="HAY UN GRAN ARMARIO EN LA ESQUINA";
+        if(H==6865||H==6853)rString="HAY NUEVE PIEDRAS";
+        if(H==248)rString=cypher("MB QBMBCSB CPSSBEB FT -'KVODPT'");
     }
 }
