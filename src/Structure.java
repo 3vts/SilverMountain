@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 public class Structure {
-    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0, VB = 0, B = 0, H = 0;
+    public static int EL = 39, NO = 88, NV = 57, G= 28, R = 77, LL = 0, VB = 0, B = 0, H = 0, D = 0;
     public static int [] F = new int[70];
     public static String [] X = new String[6];
     public static String [] Y = new String[6];
@@ -18,6 +18,7 @@ public class Structure {
     public static String [] E = new String[80];
     public static String X1 = "EL FANTASMA DEL DUENDE GUARDIAN";
     public static String X9 = "EL MAGO TE MIRA FIJAMENTE";
+    public static String XB = "﻿TE GUIA HACIA EL ";
     public static ArrayList<String> Data = new ArrayList<>(Arrays.asList(("11UNA TUMBA MEDIO ABIERTA,12EL CEMENTERIO DE LOS DUENDES,11EL HUECO DE UNA TUMBA," +
             "23ALGUNAS ESTALACTITAS Y ESTALAGMITAS,11UN LABERINTO DE TUNELES,11UNA CUEVA ABOVEDADA,23LAS ALTAS PUERTAS DE CRISTAL," +
             "12UNA HABITACION DE ENTRADA AL PALACIO,31EL PUESTO DEL CENTINELA GRARG,12LA HABITACION DE GUARDA,31LA ENSENADA PANTANOSA," +
@@ -72,7 +73,6 @@ public class Structure {
         String X7 = "LA MONTAÑA RETUMBA!";
         String X8 = "LAS TORRES SE CAEN!";
 
-        String XB = "﻿TE GUIA HACIA EL ";
         header();
         //System.out.println(Data.get(167));
         System.out.println("QUE QUIERES?");
@@ -239,7 +239,7 @@ public class Structure {
         jString = "SSSSSSSS";
         int NG = 0, MP = 0;
         do{
-            //MP = D/2; eliminar como comentario
+            MP = D/2;
             header();
             System.out.println("ESTAS PERDIDO EN LOS\n  TUNELES\nEN QUE DIRECCION IRAS? (N,S,E,O)");
             if(NG>15) System.out.println("(O F PARA FINALIZAR)");
@@ -313,5 +313,54 @@ public class Structure {
         if(H==2066)rString="HAY UN GRAN ARMARIO EN LA ESQUINA";
         if(H==6865||H==6853)rString="HAY NUEVE PIEDRAS";
         if(H==248)rString=cypher("MB QBMBCSB CPSSBEB FT -'KVODPT'");
+    }
+    public static void l1750(){
+        if(R==64)rString="EL LO DEVUELVE!";
+        if(H==6425){
+            rString="EL LO TOMA Y DICE \"" + F[41] + "VECES DEBES HACERLA SONAR\"";
+            C[24]=81;
+        }
+        if(R==75||R==76)rString="EL NO LO QUIERE";
+        if(B==62 && F[43]==0)rString="TIENES QUE SALIR CORRIENDO";
+        if((H==7562||H==7662) && F[43]>0 && C[0]==0){
+            rString="EL LA TOMA";
+            F[63]=1;
+        }
+        if(F[63]==1){
+            F[43]--;
+            if(F[43]==0)C[0]=81;
+        }
+        if(B==1){
+            rString="EL LAS COGE TODAS!";
+            C[0]=81;
+            F[63]=1;
+            F[43]=0;
+        }
+        if(H==2228 && C[4]==81){
+            rString=XB + "NORTE";
+            C[27]=81;
+            R=12;
+        }
+        if((H==2228 && C[4]==0)||H==225){
+            rString=XB + "NORTE";
+            R=12;
+        }
+        if((H==2228 && C[4]==0)||H==125){
+            rString=XB + "SUR";
+            R=22;
+        }
+        if(H==711){
+            F[45]=1;
+            rString="EL ESTA DISTRAIDO";
+        }
+        if(R==7||R==33){
+            rString="EL SE LO COME!";
+            C[B-1]=81;
+        }
+        if(H==385||H==3824){
+            rString="SE ALEJAN CORRIENDO";
+            C[B-1]=81;
+            F[64]=1;
+        }
     }
 }
