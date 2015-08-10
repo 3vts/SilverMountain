@@ -13,12 +13,13 @@ public class Structure {
     public static String [] Y = new String[6];
     public static String rString = "", dString = "", bString = "", jString ="", oString = "", pString = "",
             fString= "", lString = "", iString = "", vString = "", tString = "", uString = "", zString = "";
-    public static String [] gString = new String[2];
+    public static String [] gString = new String[]{"",""};
     public static int [] C = new int[G];
     public static String [] E = new String[80];
     public static String X1 = "EL FANTASMA DEL DUENDE GUARDIAN";
     public static String X9 = "EL MAGO TE MIRA FIJAMENTE";
     public static String XB = "﻿TE GUIA HACIA EL ";
+    public static String X7 = "LA MONTAÑA RETUMBA!";
     public static ArrayList<String> Data = new ArrayList<>(Arrays.asList(("11UNA TUMBA MEDIO ABIERTA,12EL CEMENTERIO DE LOS DUENDES,11EL HUECO DE UNA TUMBA," +
             "23ALGUNAS ESTALACTITAS Y ESTALAGMITAS,11UN LABERINTO DE TUNELES,11UNA CUEVA ABOVEDADA,23LAS ALTAS PUERTAS DE CRISTAL," +
             "12UNA HABITACION DE ENTRADA AL PALACIO,31EL PUESTO DEL CENTINELA GRARG,12LA HABITACION DE GUARDA,31LA ENSENADA PANTANOSA," +
@@ -70,7 +71,6 @@ public class Structure {
         String X3 = "UNA PATRULLA DE GRARS SE APROXIMA";
         String X4 = "LAS PALABRAS MAGICAS SE HALLAN EN EL CRUCE, LA FUENTE Y EN ";
         String X5 = "UN MONTON DE TIERRA BLOQUEA TU CAMINO";
-        String X7 = "LA MONTAÑA RETUMBA!";
         String X8 = "LAS TORRES SE CAEN!";
 
         header();
@@ -96,7 +96,7 @@ public class Structure {
         System.out.println("\tDE PLATA");
         System.out.println("==================================\n");
     }
-    public static void newGame() {
+      public static void newGame() {
         Random r = new Random();
         for (int i = 0; i < 80; i++) {
             E[i] = Data.get(180 + i);
@@ -203,7 +203,7 @@ public class Structure {
             if (B > G || B == 0 || B == 8 || B == 9 || VB == 14 || VB == 17 || VB == 44 || VB > 54) {
                 if (R == 56 && F[34] == 0 && VB != 37 && VB != 53) rString = X1 + "TE HA COGIDO";
             }
-            if (VB < NV && C[B - 1] != 0) rString = "NO TIENES" + tString;
+            if(B>0)if(VB < NV && C[B - 1] != 0) rString = "NO TIENES" + tString;
             if (R == 48 && F[62] == 0) rString = X9;
             if (VB == 44 || VB == 47 || VB == 19 || VB == 57 || VB == 49) l540();
         } while (!rString.equals("NO TIENES" + tString) && !rString.equals(X1 + "TE HA COGIDO") && !rString.equals("NO TIENES" + tString));
@@ -363,4 +363,29 @@ public class Structure {
             F[64]=1;
         }
     }
+    public static void l1890(){
+        rString="LO DIJISTE";
+        if(B==84){
+            rString="DEBES DECIRSELO UNO A UNO";
+            return;
+        }
+        if(R!=47||B<71||B>75||C[26]!=0)return;
+        if(B==71 && F[59]==0){
+            rString=X7;
+            F[59]=1;
+            return;
+        }
+        if(B==72 && F[59]==1 && F[60]==0){
+            rString=XB;
+            F[60]=1;
+            return;
+        }
+        if(B==(F[51]+73) && F[59]==1 && F[60]==1){
+            F[61]=1;
+            return;
+        }
+        rString="ESAS NO SON LAS PALABRAS SAGRADAS!!";
+        F[55]=1;
+    }
+
 }
