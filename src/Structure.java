@@ -140,19 +140,12 @@ public class Structure {
             oString = Data.get(106).substring(1);
             pString = Y[Integer.valueOf(Data.get(106).substring(0, 1)) - 1];
             if (F[26] == 0 && C[26] == R) jString += " " + pString + " " + oString + " ,";
-            if (R == 29 && F[47] == 0) {
-                jString += " UNA FIESTA DE LOS GRAGRS,";
-            } else if (R == 29 && F[47] == 1) {
-                jString += " UN GRARG DORMIDO,";
-            } else if (R == 12 || R == 22) {
-                jString += "UN PONY,";
-            } else if (R == 64) {
-                jString += "A UN ERMITANO,";
-            } else if (R == 18 && E[17].equals("N")) {
-                jString += "UNA PUERTA DE ROBLE,";
-            } else if (R == 59 && F[67] == 1) {
-                jString += " OGBAN (MUERTO),";
-            }
+            if (R == 29 && F[47] == 0) jString += " UNA FIESTA DE LOS GRAGRS,";
+            if (R == 29 && F[47] == 1) jString += " UN GRARG DORMIDO,";
+            if (R == 12 || R == 22) jString += "UN PONY,";
+            if (R == 64) jString += "A UN ERMITANO,";
+            if (R == 18 && E[17].equals("N")) jString += "UNA PUERTA DE ROBLE,";
+            if (R == 59 && F[67] == 1)jString += " OGBAN (MUERTO),";
             if (!jString.equals("")) jString = ",PUEDES VER" + jString;
             jString += " PUEDES IR AL";
             trimmer();
@@ -184,29 +177,32 @@ public class Structure {
                 }
             }
             F[35] = 0;
-
-            for (int i = 0; i < NO; i++) {
-                oString = Data.get(80 + i);
-                if (i <= (G - 1)) oString = oString.substring(1);
-                if (tString.equals(oString)) B = i;
-                i = NO;
-            }
-            if (B == 0 && F[35] == 0 && tString.equals("")) {
-                tString += "S";
-                F[35] = 1;
-            }
-
+            boolean redo = true;
+            do{
+                for (int i = 0; i < NO; i++) {
+                    oString = Data.get(80 + i);
+                    if (i <= G-1 ) oString = oString.substring(1);
+                    if (tString.equals(oString)) {
+                        B = i;
+                        i = NO;
+                    }
+                }
+                if (B == 0 && F[35] == 0 && !tString.equals("")) {
+                    tString += "S";
+                    F[35] = 1;
+                }else redo=false;
+            }while(redo);
             if (VB == 0) VB = NV + 1;
-            if (tString.equals("")) rString = "NECESITO DOS PALABRAS";
+            //if (tString.equals("")) rString = "NECESITO DOS PALABRAS";
             if (VB > NV) rString = "PRUEBA OTRA COSA";
             if (VB > NV && B == 0) rString = "NO PUEDES " + iString;
             if (B > G || B == 0 || B == 8 || B == 9 || VB == 14 || VB == 17 || VB == 44 || VB > 54) {
-                if (R == 56 && F[34] == 0 && VB != 37 && VB != 53) rString = X1 + "TE HA COGIDO";
+                if (R == 56 && F[34] == 0 && VB != 37 && VB != 53) rString = X1 + " TE HA COGIDO!";
             }
-            if(B>0)if(VB < NV && C[B - 1] != 0) rString = "NO TIENES" + tString;
+            if(B>0)if(VB < NV && C[B - 1] != 0) rString = "NO TIENES " + tString;
             if (R == 48 && F[62] == 0) rString = X9;
             if (VB == 44 || VB == 47 || VB == 19 || VB == 57 || VB == 49) l540();
-        } while (!rString.equals("NO TIENES" + tString) && !rString.equals(X1 + "TE HA COGIDO") && !rString.equals("NO TIENES" + tString));
+        } while (!rString.equals("NO TIENES " + tString) && !rString.equals(X1 + " TE HA COGIDO!") && !rString.equals(X9));
 }
     public static void loadGame(){
         System.out.print(Data.get(0));
